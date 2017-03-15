@@ -44,6 +44,8 @@ func (c ReleaseController) GetCSV(project, product string) revel.Result {
 	for k := range c.Params.Query {
 		m[k] = c.Params.Query.Get(k)
 	}
+	m["is_active"] = "true"
+	m["released"] = "true"
 	releases, err = models.GetReleases(m)
 	if err != nil {
 		errResp := buildErrResponse(err, "500")

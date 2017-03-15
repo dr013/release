@@ -4,6 +4,7 @@ import (
 	"gitlab.bt.bpc.in/DevOps/release/app/models/mongodb"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"strconv"
 	"time"
 )
 
@@ -81,10 +82,16 @@ func GetReleases(args map[string]string) ([]Release, error) {
 	var (
 		releases []Release
 		err      error
+		flag     bool
 	)
 	q := bson.M{}
 	for k, v := range args {
-		q[k] = v
+		flag, err = strconv.ParseBool(v)
+		if err == nil {
+			q[k] = flag
+		} else {
+			q[k] = v
+		}
 	}
 
 	c := newReleaseCollection()
