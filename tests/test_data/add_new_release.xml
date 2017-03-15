@@ -1,0 +1,37 @@
+<RestClientRequest>
+  <option name="biscuits">
+    <list>
+      <Biscuit>
+        <option name="date" value="-1" />
+        <option name="domain" value="localhost" />
+        <option name="name" value="REVEL_FLASH" />
+        <option name="path" value="/" />
+        <option name="value" value="" />
+      </Biscuit>
+    </list>
+  </option>
+  <option name="httpMethod" value="POST" />
+  <option name="urlBase" value="http://localhost:9000" />
+  <option name="urlPath" value="restful/release" />
+  <option name="headers">
+    <list>
+      <KeyValuePair>
+        <option name="key" value="Accept" />
+        <option name="value" value="*/*" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="Cache-Control" />
+        <option name="value" value="no-cache" />
+      </KeyValuePair>
+    </list>
+  </option>
+  <option name="parameters">
+    <list />
+  </option>
+  <option name="parametersEnabled" value="true" />
+  <option name="haveTextToSend" value="true" />
+  <option name="haveFileToSend" value="false" />
+  <option name="isFileUpload" value="false" />
+  <option name="textToSend" value="{  &quot;name&quot;: &quot;1.0&quot;, &quot;product&quot;: &quot;sv&quot;, &quot;project&quot;: &quot;core&quot;, &quot;jira&quot;: &quot;TEST-1&quot;, &quot;is_active&quot;: true }" />
+  <option name="filesToSend" value="" />
+</RestClientRequest>

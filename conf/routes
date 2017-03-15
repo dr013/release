@@ -1,0 +1,12 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+module:testrunner
+
+GET        /restful/release                   ReleaseController.Index
+GET        /restful/release/csv               ReleaseController.GetCSV
+POST       /restful/release                   ReleaseController.Create
+PUT        /restful/release                   ReleaseController.Update
+GET        /restful/release/:id               ReleaseController.Show
+DELETE     /restful/release/:id               ReleaseController.Delete
