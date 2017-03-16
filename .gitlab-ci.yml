@@ -1,10 +1,20 @@
+variables:
+  GOPATH: "/tmp/go"
+  PRJ_NAME: "gitlab.bt.bpc.in/${CI_PROJECT_PATH}"
+  SYMLINK: "${GOPATH}/src/gitlab.bt.bpc.in/${CI_PROJECT_PATH}"
+  PRJ_PATH: "${GOPATH}/src/gitlab.bt.bpc.in/DevOps"
+stages:
+  - build
 compile:
-    stage: packing
-    artifacts:
-        paths:
-        - ./
-        name: ${CI_PROJECT_NAME}
-      only:
-        - tags
-    tags:
-        - linux
+  stage: build
+  script:
+    - cat VERSION
+  artifacts:
+    paths:
+      - app/
+      - conf/
+    name: ${CI_PROJECT_NAME}
+  only:
+    - tags
+  tags:
+    - go
