@@ -1,0 +1,10 @@
+compile:
+    stage: packing
+    artifacts:
+        paths:
+        - ./
+        name: ${CI_PROJECT_NAME}
+      only:
+        - tags
+    tags:
+        - linux
