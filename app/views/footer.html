@@ -1,0 +1,22 @@
+  {{if eq .RunMode "dev"}}
+    {{template "debug.html" .}}
+  {{end}}
+  <footer class="blockquote-footer">
+      <div class="container">
+          <p class="muted credit">
+              <svg xmlns="http://www.w3.org/2000/svg" width="98" height="20">
+                  <g shape-rendering="crispEdges">
+                      <path fill="#555" d="M0 0h75v20H0z"/>
+                      <path fill="#6362c2" d="M75 0h23v20H75z"/>
+                  </g>
+                  <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+                      <text x="37.5" y="14">powered by</text>
+                      <text x="85.5" y="14">go</text>
+                  </g>
+              </svg>
+              <span class="text-muted">BPC R&D DevOps Team 2016-{{.current_year}} Current version: {{.version}}</span>
+          </p>
+      </div>
+  </footer>
+  </body>
+</html>

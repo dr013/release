@@ -1,0 +1,43 @@
+variables:
+  GOPATH: "/tmp/go"
+  PRJ_NAME: "gitlab.bt.bpc.in/${CI_PROJECT_PATH}"
+  SYMLINK: "${GOPATH}/src/gitlab.bt.bpc.in/${CI_PROJECT_PATH}"
+  PRJ_PATH: "${GOPATH}/src/gitlab.bt.bpc.in/DevOps"
+before_script:
+    - if ! [ -d ${PRJ_PATH} ]; then mkdir -p ${PRJ_PATH}; fi;
+    - if ! [ -L ${SYMLINK} ]; then ln -s ${CI_PROJECT_DIR} ${PRJ_PATH}; fi;
+    - cd ${SYMLINK}
+    - cat req-go.txt | xargs go get
+stages:
+  - test
+  - packing
+test_build:
+  stage: test
+  script:
+    - export PATH=${GOPATH}/bin:$PATH
+    - cd ${SYMLINK}
+    - go tool vet -composites=false -shadow=true app/
+#        - go test -cover app/
+    - cp tests/app.conf conf/
+    - echo "module:testrunner" >> conf/routes
+    - echo "GET / App.Index" >> conf/routes
+    - echo "GET /public/*filepath Static.Serve("public")" >> conf/routes
+    - revel test ${PRJ_NAME}
+  tags:
+    - go
+  except:
+    - tags
+
+create_build:
+  stage: packing
+  script:
+    - cat VERSION
+  artifacts:
+    paths:
+      - app/
+      - conf/
+    name: ${CI_PROJECT_NAME}
+  only:
+    - tags
+  tags:
+    - go
